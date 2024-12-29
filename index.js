@@ -1,8 +1,9 @@
 // npm run start( in terminal to run this code )
-
+import 'dotenv/config'
 import express from 'express'
 
 const app = express()
+const port = process.env.PORT ||3000;
 
 // app.get("/", (req, res) => {
 //     res.send("Hello from vinay!")
@@ -16,14 +17,12 @@ const app = express()
 //   res.send("it's my twitter account");
 // });
 
-// add a new tea
 app.use(express.json()) // any data that comes in json format we accept that
 
 let teaData = []
 let nextId = 1
-const port = 3000;
 
-
+// add a new tea
 app.post('/teas', (req, res) => {
     const {name, price} =req.body                              // body is given by express js
     const newTea = {id: nextId++, name, price}
